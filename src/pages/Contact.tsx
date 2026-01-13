@@ -65,14 +65,23 @@ const Contact = () => {
     },
   });
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = (data: ContactFormData) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const recipientEmail = "info@parastape.com";
+    const subject = encodeURIComponent(`New Inquiry from ${data.name}${data.company ? ` - ${data.company}` : ""}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\n` +
+      `Email: ${data.email}\n` +
+      `Phone: ${data.phone}\n` +
+      `${data.company ? `Company: ${data.company}\n` : ""}` +
+      `\nMessage:\n${data.message}`
+    );
     
-    toast.success("Thank you for your inquiry!", {
-      description: "We'll get back to you within 24 hours.",
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    
+    toast.success("Opening your email client...", {
+      description: "Please send the email to complete your inquiry.",
     });
     
     form.reset();
