@@ -37,12 +37,12 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["Contact for details"],
+    details: ["9811292789"," 7988691962"],
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["info@parastape.com"],
+    details: ["parastape2@gmail.com", "parastapeindustries@gmail.com"],
   },
   {
     icon: Clock,
@@ -65,19 +65,34 @@ const Contact = () => {
     },
   });
 
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast.success("Thank you for your inquiry!", {
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    form.reset();
-    setIsSubmitting(false);
-  };
+  const onSubmit = (data: ContactFormData) => {
+  setIsSubmitting(true);
+
+  const recipientEmail = "parastape2@gmail.com";
+  const subject = `New Inquiry from ${data.name}${data.company ? ` - ${data.company}` : ""}`;
+  const body =
+    `Name: ${data.name}\n` +
+    `Email: ${data.email}\n` +
+    `Phone: ${data.phone}\n` +
+    `${data.company ? `Company: ${data.company}\n` : ""}` +
+    `\nMessage:\n${data.message}`;
+
+  const gmailUrl =
+    `https://mail.google.com/mail/?view=cm&fs=1` +
+    `&to=${encodeURIComponent(recipientEmail)}` +
+    `&su=${encodeURIComponent(subject)}` +
+    `&body=${encodeURIComponent(body)}`;
+
+  window.open(gmailUrl, "_blank");
+
+  toast.success("Opening Gmail...", {
+    description: "Please send the email to complete your inquiry.",
+  });
+
+  form.reset();
+  setIsSubmitting(false);
+};
+
 
   return (
     <div className="min-h-screen">
