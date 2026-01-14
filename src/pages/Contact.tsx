@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
+
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Input } from "@/components/ui/input";
@@ -18,26 +19,47 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+/* -------------------- Validation Schema -------------------- */
 const contactSchema = z.object({
-  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
-  phone: z.string().trim().min(10, "Phone number must be at least 10 digits").max(15, "Phone number must be less than 15 digits"),
-  company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message must be less than 1000 characters"),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name must be less than 100 characters"),
+
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters"),
+
+  phone: z
+    .string()
+    .trim()
+    .min(10, "Phone number must be at least 10 digits")
+    .max(15, "Phone number must be less than 15 digits"),
+
+  message: z
+    .string()
+    .trim()
+    .max(1000, "Message must be less than 1000 characters"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+/* -------------------- Contact Info -------------------- */
 const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    details: ["India"],
+    details: [
+      "Paras Tape Industry, Kh No-11, Samaypur Sohna Road, Sector-56A, Industrial Area, Faridabad",
+    ],
   },
   {
     icon: Phone,
     title: "Phone",
-    details: ["9811292789"," 7988691962"],
+    details: ["9811292789", "7988691962"],
   },
   {
     icon: Mail,
@@ -51,6 +73,7 @@ const contactInfo = [
   },
 ];
 
+/* -------------------- Component -------------------- */
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -60,84 +83,90 @@ const Contact = () => {
       name: "",
       email: "",
       phone: "",
-      company: "",
       message: "",
     },
   });
 
   const onSubmit = (data: ContactFormData) => {
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  const recipientEmail = "parastape2@gmail.com";
-  const subject = `New Inquiry from ${data.name}${data.company ? ` - ${data.company}` : ""}`;
-  const body =
-    `Name: ${data.name}\n` +
-    `Email: ${data.email}\n` +
-    `Phone: ${data.phone}\n` +
-    `${data.company ? `Company: ${data.company}\n` : ""}` +
-    `\nMessage:\n${data.message}`;
+    const recipientEmail = "parastape2@gmail.com";
+    const subject = `New Inquiry from ${data.name}`;
+    const body =
+      `Name: ${data.name}\n` +
+      `Email: ${data.email}\n` +
+      `Phone: ${data.phone}\n` +
+      `\nMessage:\n${data.message}`;
 
-  const gmailUrl =
-    `https://mail.google.com/mail/?view=cm&fs=1` +
-    `&to=${encodeURIComponent(recipientEmail)}` +
-    `&su=${encodeURIComponent(subject)}` +
-    `&body=${encodeURIComponent(body)}`;
+    const gmailUrl =
+      `https://mail.google.com/mail/?view=cm&fs=1` +
+      `&to=${encodeURIComponent(recipientEmail)}` +
+      `&su=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
 
-  window.open(gmailUrl, "_blank");
+    window.open(gmailUrl, "_blank");
 
-  toast.success("Opening Gmail...", {
-    description: "Please send the email to complete your inquiry.",
-  });
+    toast.success("Opening Gmail...", {
+      description: "Please send the email to complete your inquiry.",
+    });
 
-  form.reset();
-  setIsSubmitting(false);
-};
-
+    form.reset();
+    setIsSubmitting(false);
+  };
 
   return (
     <div className="min-h-screen">
       <Header />
+
       <main>
-        {/* Hero Section */}
+        {/* ---------------- Hero Section ---------------- */}
         <section className="hero-bg pt-32 pb-16 md:pt-40 md:pb-24">
           <div className="container-custom px-4">
             <div className="max-w-3xl">
               <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 border border-secondary/30 text-secondary font-medium text-sm mb-4">
                 Contact Us
               </span>
+
               <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4">
                 Get in <span className="text-secondary">Touch</span>
               </h1>
+
               <p className="text-lg text-primary-foreground/80 leading-relaxed">
-                Have questions about our products or need a custom quote? 
+                Have questions about our products or need a custom quote?
                 We're here to help with all your packaging needs.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Contact Form & Info */}
+        {/* ---------------- Contact Section ---------------- */}
         <section className="section-padding bg-muted">
           <div className="container-custom">
             <div className="grid lg:grid-cols-3 gap-8">
-              {/* Contact Information */}
+              {/* Contact Info */}
               <div className="lg:col-span-1">
                 <div className="card-industrial h-full">
                   <h2 className="font-heading text-xl font-bold text-foreground mb-6">
                     Contact Information
                   </h2>
+
                   <div className="space-y-6">
                     {contactInfo.map((info, index) => (
                       <div key={index} className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
                           <info.icon className="w-5 h-5 text-secondary" />
                         </div>
+
                         <div>
                           <h3 className="font-semibold text-foreground mb-1">
                             {info.title}
                           </h3>
+
                           {info.details.map((detail, idx) => (
-                            <p key={idx} className="text-sm text-muted-foreground">
+                            <p
+                              key={idx}
+                              className="text-sm text-muted-foreground"
+                            >
                               {detail}
                             </p>
                           ))}
@@ -166,12 +195,16 @@ const Contact = () => {
                   <h2 className="font-heading text-xl font-bold text-foreground mb-2">
                     Send Us a Message
                   </h2>
+
                   <p className="text-muted-foreground mb-6">
                     Fill out the form below and we'll get back to you shortly.
                   </p>
 
                   <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-6"
+                    >
                       <div className="grid sm:grid-cols-2 gap-4">
                         <FormField
                           control={form.control}
@@ -186,6 +219,7 @@ const Contact = () => {
                             </FormItem>
                           )}
                         />
+
                         <FormField
                           control={form.control}
                           name="email"
@@ -193,36 +227,11 @@ const Contact = () => {
                             <FormItem>
                               <FormLabel>Email Address *</FormLabel>
                               <FormControl>
-                                <Input type="email" placeholder="your@email.com" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone Number *</FormLabel>
-                              <FormControl>
-                                <Input type="tel" placeholder="+91 XXXXX XXXXX" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="company"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Company Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your company" {...field} />
+                                <Input
+                                  type="email"
+                                  placeholder="your@email.com"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -232,13 +241,31 @@ const Contact = () => {
 
                       <FormField
                         control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone Number *</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="tel"
+                                placeholder="+91 XXXXX XXXXX"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Message *</FormLabel>
+                            <FormLabel>Message</FormLabel>
                             <FormControl>
                               <Textarea
-                                placeholder="Tell us about your requirements, quantities needed, or any questions you have..."
+                                placeholder="Tell us about your requirements or questions..."
                                 className="min-h-[150px] resize-none"
                                 {...field}
                               />
@@ -273,6 +300,7 @@ const Contact = () => {
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
