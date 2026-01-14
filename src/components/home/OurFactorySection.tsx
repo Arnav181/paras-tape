@@ -15,23 +15,32 @@ const OurFactorySection = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Factory Image */}
-            <div className="rounded-lg overflow-hidden shadow-2xl">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Factory Image 1 */}
+            <div className="rounded-lg overflow-hidden shadow-2xl aspect-[4/3]">
               <img
                 src="/products/Factory.jpeg"
-                alt="Our Factory - Modern Manufacturing Facility"
-                className="w-full h-auto object-cover"
+                alt="Our Factory - Manufacturing Facility"
+                className="w-full h-full object-cover"
               />
             </div>
 
-            {/* GST Certificate Image */}
-            <div className="rounded-lg overflow-hidden shadow-2xl">
+            {/* Factory Image 2 */}
+            <div className="rounded-lg overflow-hidden shadow-2xl aspect-[4/3]">
               <img
-                src="/products/GST in.jpeg"
-                alt="GST Certificate - Our Commitment to Compliance"
-                className="w-full h-auto object-cover"
+                src="/products/Factory2.jpeg"
+                alt="Our Factory - Production Area"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Factory Image 3 */}
+            <div className="rounded-lg overflow-hidden shadow-2xl aspect-[4/3]">
+              <img
+                src="/products/Factory3.jpeg"
+                alt="Our Factory - Quality Control"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

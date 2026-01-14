@@ -23,7 +23,8 @@ const Footer = () => {
             </Link>
             <p className="text-sm opacity-80 leading-relaxed">
               Manufacturer and supplier of industrial quality BOPP packaging tapes 
-              serving businesses across India.
+              serving businesses across India.<br></br>
+              GST IN - 06AAMFP0214H1ZJ
             </p>
           </div>
 
