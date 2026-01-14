@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Package } from "lucide-react";
+import ScrollProgress from "./ScrollProgress";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,9 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <>
+      <ScrollProgress />
+      <header className="fixed top-1 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
@@ -97,6 +100,7 @@ const Header = () => {
         )}
       </div>
     </header>
+    </>
   );
 };
 

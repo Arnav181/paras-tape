@@ -10,6 +10,7 @@ export const products: Product[] = [
   {
     id: "bopp-tapes",
     name: "BOPP Tapes",
+    image: "products/Boppall.jpeg",
     description: "Premium quality BOPP packaging tapes available in transparent and all colors, with custom printing options.",
     specifications: [
       "Printed all kinds (single printed box also available, additional charges apply)",
@@ -22,6 +23,7 @@ export const products: Product[] = [
   {
     id: "floor-marking-tapes",
     name: "Floor Marking Tapes",
+    image: "products/Floormarking.jpeg",
     description: "High-visibility floor marking tapes for industrial safety and organization.",
     specifications: [
       "Black and yellow striped tape",
@@ -33,6 +35,7 @@ export const products: Product[] = [
   {
     id: "tissue-tape",
     name: "Tissue Tape",
+    image: "products/Tissue.jpeg",
     description: "Versatile tissue tapes for various bonding and mounting applications.",
     specifications: [
       "All types available",
@@ -44,6 +47,7 @@ export const products: Product[] = [
   {
     id: "foam-tape",
     name: "Foam Tape",
+    image: "/products/Foam.jpeg",
     description: "Double-sided foam tapes for mounting and sealing applications.",
     specifications: [
       "Width: 12MM to 48MM",
@@ -55,6 +59,7 @@ export const products: Product[] = [
   {
     id: "aluminum-tape",
     name: "Aluminum Tape",
+    image: "/products/Aluminium.jpeg",
     description: "Heat-resistant aluminum foil tape for HVAC and insulation applications.",
     specifications: [
       "Width: 24MM to 96MM",
@@ -66,6 +71,7 @@ export const products: Product[] = [
   {
     id: "craft-tape",
     name: "Craft Tape",
+    image: "/products/Craft.jpeg",
     description: "Durable craft tapes for packaging and reinforcement purposes.",
     specifications: [
       "Self adhesive tape",
@@ -77,6 +83,7 @@ export const products: Product[] = [
   {
     id: "filament-tape",
     name: "Filament Tape",
+    image: "/products/Filament.jpeg",
     description: "High-strength filament tape for heavy-duty strapping and bundling.",
     specifications: [
       "Cross filament tape",
@@ -88,6 +95,7 @@ export const products: Product[] = [
   {
     id: "masking-tape",
     name: "Masking Tape",
+    image: "/products/Masking.jpeg",
     description: "Professional masking tape for painting and surface protection.",
     specifications: [
       "Width: 6MM to 72MM",
@@ -97,58 +105,16 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "insulation-tape",
-    name: "Insulation Tape",
-    description: "Electrical insulation tape for wiring and electrical applications.",
-    specifications: [
-      "FR (Flame Retardant) available",
-      "Non-FR also available",
-      "Excellent insulation properties",
-      "Multiple colors",
-    ],
-  },
-  {
     id: "jumbo-roll",
     name: "Jumbo Roll",
-    description: "Large format BOPP rolls for high-volume slitting operations.",
+    image: "/products/Jumboroll.webp",
+    description: "Large jumbo rolls of adhesive tapes for industrial use and high-volume applications.",
     specifications: [
-      "Baby jumbo: 288mm",
-      "1350mm jumbo also available",
-      "For industrial slitting",
-      "Bulk quantities",
+      "Available in various tape types",
+      "Custom widths and lengths",
+      "Cost-effective for bulk use",
+      "Suitable for automated dispensers",
     ],
-  },
-  {
-    id: "stretch-film",
-    name: "Stretch Film",
-    description: "High-quality stretch film for pallet wrapping and product protection.",
-    specifications: [
-      "Width: 4 inch to 18 inch",
-      "Sold in units of kg",
-      "Strong stretch properties",
-      "Clear and tinted options",
-    ],
-  },
-  {
-    id: "ep-foam",
-    name: "EP Foam",
-    description: "Expanded polyethylene foam for cushioning and protection.",
-    specifications: [
-      "Various thicknesses available",
-      "Excellent cushioning",
-      "Lightweight material",
-      "Custom cutting available",
-    ],
-  },
-  {
-    id: "bubble-roll",
-    name: "Bubble Roll",
-    description: "Protective bubble wrap rolls for fragile item packaging.",
-    specifications: [
-      "Width: 30 inch to 45 inch",
-      "GSM: 80 to 120",
-      "Sold in units of kg",
-      "Various bubble sizes",
-    ],
-  },
+  }
+  
 ];

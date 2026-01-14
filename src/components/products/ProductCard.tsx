@@ -10,7 +10,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="card-industrial group h-full flex flex-col">
       {/* Product Icon/Image Placeholder */}
       <div className="w-full aspect-[4/3] rounded-lg bg-muted flex items-center justify-center mb-4 group-hover:bg-secondary/10 transition-colors">
-        <Package className="w-12 h-12 text-muted-foreground group-hover:text-secondary transition-colors" />
+        <img src={product.image} alt={product.name} className="w-full h-full object-cover rounded-lg" />
       </div>
 
       {/* Content */}
